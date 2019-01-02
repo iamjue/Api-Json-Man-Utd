@@ -1,8 +1,12 @@
 package com.iamjue.manchesterunited;
 
-public class PlayerItem {
-    String strPlayer, dateBorn, dateSigned, strPosition, strThumb, strNationality, strBirthLocation;
-    String strDescriptionEN, strHeight, strWeight, strTwitter, strInstagram;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class PlayerItem implements Parcelable {
+    private String strPlayer, dateBorn, dateSigned, strPosition, strThumb, strNationality, strBirthLocation;
+    private String strDescriptionEN, strHeight, strWeight, strTwitter, strInstagram;
+
 
     public PlayerItem(String strPlayer, String dateBorn, String dateSigned, String strPosition, String strThumb, String strNationality,
                       String strBirthLocation, String strDescriptionEN, String strHeight, String strWeight, String strTwitter, String strInstagram) {
@@ -22,7 +26,34 @@ public class PlayerItem {
 
     }
 
-    public String getStrPlayer() {
+    protected PlayerItem(Parcel in) {
+        strPlayer = in.readString();
+        dateBorn = in.readString();
+        dateSigned = in.readString();
+        strPosition = in.readString();
+        strThumb = in.readString();
+        strNationality = in.readString();
+        strBirthLocation = in.readString();
+        strDescriptionEN = in.readString();
+        strHeight = in.readString();
+        strWeight = in.readString();
+        strTwitter = in.readString();
+        strInstagram = in.readString();
+    }
+
+    public static final Creator<PlayerItem> CREATOR = new Creator<PlayerItem>() {
+        @Override
+        public PlayerItem createFromParcel(Parcel in) {
+            return new PlayerItem(in);
+        }
+
+        @Override
+        public PlayerItem[] newArray(int size) {
+            return new PlayerItem[size];
+        }
+    };
+
+    String getStrPlayer() {
         return strPlayer;
     }
 
@@ -30,7 +61,7 @@ public class PlayerItem {
         this.strPlayer = strPlayer;
     }
 
-    public String getDateBorn() {
+    String getDateBorn() {
         return dateBorn;
     }
 
@@ -38,7 +69,7 @@ public class PlayerItem {
         this.dateBorn = dateBorn;
     }
 
-    public String getDateSigned() {
+    String getDateSigned() {
         return dateSigned;
     }
 
@@ -46,7 +77,7 @@ public class PlayerItem {
         this.dateSigned = dateSigned;
     }
 
-    public String getStrPosition() {
+    String getStrPosition() {
         return strPosition;
     }
 
@@ -54,7 +85,7 @@ public class PlayerItem {
         this.strPosition = strPosition;
     }
 
-    public String getStrThumb() {
+    String getStrThumb() {
         return strThumb;
     }
 
@@ -62,7 +93,7 @@ public class PlayerItem {
         this.strThumb = strThumb;
     }
 
-    public String getStrNationality() {
+    String getStrNationality() {
         return strNationality;
     }
 
@@ -70,7 +101,7 @@ public class PlayerItem {
         this.strNationality = strNationality;
     }
 
-    public String getStrBirthLocation() {
+    String getStrBirthLocation() {
         return strBirthLocation;
     }
 
@@ -78,7 +109,7 @@ public class PlayerItem {
         this.strBirthLocation = strBirthLocation;
     }
 
-    public String getStrDescriptionEN() {
+    String getStrDescriptionEN() {
         return strDescriptionEN;
     }
 
@@ -86,7 +117,7 @@ public class PlayerItem {
         this.strDescriptionEN = strDescriptionEN;
     }
 
-    public String getStrHeight() {
+    String getStrHeight() {
         return strHeight;
     }
 
@@ -94,7 +125,7 @@ public class PlayerItem {
         this.strHeight = strHeight;
     }
 
-    public String getStrWeight() {
+    String getStrWeight() {
         return strWeight;
     }
 
@@ -102,7 +133,7 @@ public class PlayerItem {
         this.strWeight = strWeight;
     }
 
-    public String getStrTwitter() {
+    String getStrTwitter() {
         return strTwitter;
     }
 
@@ -110,11 +141,32 @@ public class PlayerItem {
         this.strTwitter = strTwitter;
     }
 
-    public String getStrInstagram() {
+    String getStrInstagram() {
         return strInstagram;
     }
 
     public void setStrInstagram(String strInstagram) {
         this.strInstagram = strInstagram;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(strPlayer);
+        dest.writeString(dateBorn);
+        dest.writeString(dateSigned);
+        dest.writeString(strPosition);
+        dest.writeString(strThumb);
+        dest.writeString(strNationality);
+        dest.writeString(strBirthLocation);
+        dest.writeString(strDescriptionEN);
+        dest.writeString(strHeight);
+        dest.writeString(strWeight);
+        dest.writeString(strTwitter);
+        dest.writeString(strInstagram);
     }
 }
