@@ -1,52 +1,80 @@
 package com.iamjue.manchesterunited;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ListViewAdapter extends ArrayAdapter<PlayerItem> {
-    private List<PlayerItem> playerItemList;
+public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHolder> {
+    public ArrayList<PlayerItem> getPlayerItemList() {
+        return playerItemList;
+    }
+
+    public void setPlayerItemList(ArrayList<PlayerItem> playerItemList) {
+        this.playerItemList = playerItemList;
+    }
+
+    private ArrayList<PlayerItem> playerItemList;
     private Context context;
 
-    public ListViewAdapter(List<PlayerItem> playerItemList, Context context) {
-        super( context, R.layout.list_row, playerItemList );
-        this.playerItemList = playerItemList;
-        this.context = context;
+    public ListViewAdapter(Context c) {
+    this.context = c;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_row,viewGroup,false);
+        return  new ViewHolder(v);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from( context );
-        View listViewItem = inflater.inflate( R.layout.list_row, null, true );
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+       Glide.with(context).load(getPlayerItemList().get(i).getStrThumb()).into(viewHolder.imgPlayer);
+       viewHolder.tvNamePlayer.setText(String.format("\t\t\t%s", getPlayerItemList().get(i).getStrPlayer()));
+        viewHolder.tvBirth.setText(String.format("\t\t\t%s", getPlayerItemList().get(i).getDateBorn()));
+        viewHolder.tvSign.setText(String.format("\t\t\t%s", getPlayerItemList().get(i).getDateSigned()));
+        viewHolder.tvPosition.setText(String.format("\t\t\t%s", getPlayerItemList().get(i).getStrPosition()));
 
-        CircleImageView imgPlayer = (CircleImageView) listViewItem.findViewById( R.id.img_photo );
+    }
 
-        TextView tvNamePlayer = (TextView) listViewItem.findViewById( R.id.tv_namePlayer );
-        TextView tvBirth = (TextView) listViewItem.findViewById( R.id.tv_playerBorn );
-        TextView tvSign = (TextView) listViewItem.findViewById( R.id.tv_playerSign );
-        TextView tvPosition = (TextView) listViewItem.findViewById( R.id.tv_playerPosition );
+    @Override
+    public int getItemCount() {
+        return getPlayerItemList().size();
+    }
 
-        PlayerItem playerItem = playerItemList.get( position );
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.img_photo)
+        CircleImageView imgPlayer;
 
-        Glide.with( context ).load( playerItem.getStrThumb() ).into( imgPlayer );
-        tvNamePlayer.setText( "\t\t\t" + playerItem.getStrPlayer() );
-        tvBirth.setText( "\t\t\t" + playerItem.getDateBorn() );
-        tvSign.setText( "\t\t\t" + playerItem.getDateSigned() );
-        tvPosition.setText( "\t\t\t" + playerItem.getStrPosition() );
+        @BindView(R.id.tv_namePlayer)
+        TextView tvNamePlayer;
+
+        @BindView(R.id.tv_playerBorn)
+        TextView tvBirth;
+
+        @BindView(R.id.tv_playerSign)
+        TextView tvSign;
+
+        @BindView(R.id.tv_playerPosition)
+        TextView tvPosition;
 
 
-        return listViewItem;
-
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
     }
 }

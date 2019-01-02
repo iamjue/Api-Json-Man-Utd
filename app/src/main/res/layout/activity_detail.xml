@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,8 +21,9 @@
                 android:layout_height="300dp"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical">
-
+<!--Biasakan menentukan scaleType untuk img agar img tidak besar kecil-->
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/img_photoDetail"
                     android:layout_width="match_parent"
                     android:layout_height="280dp" />
@@ -39,8 +39,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Boidata" />
-
-                <ScrollView
+                <!--Untuk scroll view didalam scroll view gunakan nestedScrollView ,
+                Agar dapat di scroll kalo menggunaknan scrollview tidak berfungsi-->
+                <android.support.v4.widget.NestedScrollView
                     android:id="@+id/scollView_disc"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
@@ -50,7 +51,7 @@
                         android:id="@+id/tv_desc"
                         android:layout_width="match_parent"
                         android:layout_height="100dp" />
-                </ScrollView>
+                </android.support.v4.widget.NestedScrollView>
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -64,14 +65,15 @@
                             android:id="@+id/txt_nameDetail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Player Name\t: " />
+                            android:text="@string/player_name_t" /> //Jangan gunakan hardcore String,Tidak akan berfungsi saat localization gunakan alt+ enter untuk extra resource String
 
                         <TextView
                             android:id="@+id/tv_nameDetail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="playername"
+
+                            android:text="@string/playername"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -81,14 +83,14 @@
                             android:id="@+id/txt_dateOfBirth"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Date Of Birth\t: " />
+                            android:text="@string/date_of_birth_t" />
 
                         <TextView
                             android:id="@+id/tv_dateOfBirth"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Date "
+                            android:text="@string/date"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -98,14 +100,14 @@
                             android:id="@+id/txt_nationality"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Nationality\t\t\t: " />
+                            android:text="@string/nationality_t_t_t" />
 
                         <TextView
                             android:id="@+id/tv_nationality"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="nationality "
+                            android:text="@string/nationality"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -115,14 +117,14 @@
                             android:id="@+id/txt_weight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Weight\t\t\t\t\t\t: " />
+                            android:text="@string/weight_t_t_t_t_t_t" />
 
                         <TextView
                             android:id="@+id/tv_weight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="weight"
+                            android:text="@string/weight"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -132,14 +134,14 @@
                             android:id="@+id/txt_height"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Height\t\t\t\t\t\t: " />
+                            android:text="@string/height_t_t_t_t_t_t" />
 
                         <TextView
                             android:id="@+id/tv_Height"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Height"
+                            android:text="@string/height"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -149,14 +151,14 @@
                             android:id="@+id/txt_twiter"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Twitter\t\t\t\t\t\t:" />
+                            android:text="@string/twitter_t_t_t_t_t_t" />
 
                         <TextView
                             android:id="@+id/tv_twiter"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="twiter"
+                            android:text="@string/twiter"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -166,14 +168,14 @@
                             android:id="@+id/txt_ig"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Instagram\t\t\t:" />
+                            android:text="@string/instagram_t_t_t" />
 
                         <TextView
                             android:id="@+id/tv_Ig"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Instagram"
+                            android:text="@string/instagram"
                             android:textStyle="bold" />
                     </TableRow>
                 </TableLayout>
