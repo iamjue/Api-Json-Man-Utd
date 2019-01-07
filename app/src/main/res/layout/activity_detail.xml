@@ -34,29 +34,12 @@
                 android:layout_height="match_parent"
                 android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/txt_bio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Boidata" />
-
-                <ScrollView
-                    android:id="@+id/scollView_disc"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_below="@+id/txt_bio">
-
-                    <TextView
-                        android:id="@+id/tv_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp" />
-                </ScrollView>
-
                 <TableLayout
+                    android:id="@+id/table_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/scollView_disc"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
 
                     <TableRow>
 
@@ -177,6 +160,23 @@
                             android:textStyle="bold" />
                     </TableRow>
                 </TableLayout>
+
+                <TextView
+                    android:id="@+id/txt_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/table_layout"
+                    android:padding="5dp"
+                    android:text="Boidata" />
+
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_bio"
+                    android:padding="5dp" />
+
+
             </RelativeLayout>
 
         </LinearLayout>

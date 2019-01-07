@@ -43,18 +43,20 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                PlayerItem playerItem = playerItemList.get( position );
+                PlayerItem player = new PlayerItem();
+                player.setStrPlayer( playerItemList.get( position ).getStrPlayer() );
+                player.setStrThumb( playerItemList.get( position ).getStrThumb() );
+                player.setStrDescriptionEN( playerItemList.get( position ).getStrDescriptionEN() );
+                player.setStrNationality( playerItemList.get( position ).getStrNationality() );
+                player.setDateBorn( playerItemList.get( position ).getDateBorn() );
+                player.setStrBirthLocation( playerItemList.get( position ).getStrBirthLocation() );
+                player.setStrHeight( playerItemList.get( position ).getStrHeight() );
+                player.setStrWeight( playerItemList.get( position ).getStrWeight() );
+                player.setStrTwitter( playerItemList.get( position ).getStrTwitter() );
+                player.setStrInstagram( playerItemList.get( position ).getStrInstagram() );
                 Intent detailIntent = new Intent( MainActivity.this, Detail.class );
-                detailIntent.putExtra( Detail.EXTRA_PHOTO, playerItem.getStrThumb() );
-                detailIntent.putExtra( Detail.EXTRA_NAME, playerItem.getStrPlayer() );
-                detailIntent.putExtra( Detail.EXTRA_DESC, playerItem.getStrDescriptionEN() );
-                detailIntent.putExtra( Detail.EXTRA_NATIONAL, playerItem.getStrNationality() );
-                detailIntent.putExtra( Detail.EXTRA_BORN, playerItem.getDateBorn() );
-                detailIntent.putExtra( Detail.EXTRA_BIRTH, playerItem.getStrBirthLocation() );
-                detailIntent.putExtra( Detail.EXTRA_HEIGHT, playerItem.getStrHeight() );
-                detailIntent.putExtra( Detail.EXTRA_WEIGHT, playerItem.getStrWeight() );
-                detailIntent.putExtra( Detail.EXTRA_TW, playerItem.getStrTwitter() );
-                detailIntent.putExtra( Detail.EXTRA_IG, playerItem.getStrInstagram() );
+
+                detailIntent.putExtra( "manUtd", player );
                 startActivity( detailIntent );
             }
         } );

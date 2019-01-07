@@ -1,6 +1,9 @@
 package com.iamjue.manchesterunited;
 
-public class PlayerItem {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class PlayerItem implements Parcelable {
     String strPlayer, dateBorn, dateSigned, strPosition, strThumb, strNationality, strBirthLocation;
     String strDescriptionEN, strHeight, strWeight, strTwitter, strInstagram;
 
@@ -19,6 +22,38 @@ public class PlayerItem {
         this.strTwitter = strTwitter;
         this.strInstagram = strInstagram;
 
+
+    }
+
+
+    protected PlayerItem(Parcel in) {
+        strPlayer = in.readString();
+        dateBorn = in.readString();
+        dateSigned = in.readString();
+        strPosition = in.readString();
+        strThumb = in.readString();
+        strNationality = in.readString();
+        strBirthLocation = in.readString();
+        strDescriptionEN = in.readString();
+        strHeight = in.readString();
+        strWeight = in.readString();
+        strTwitter = in.readString();
+        strInstagram = in.readString();
+    }
+
+    public static final Creator<PlayerItem> CREATOR = new Creator<PlayerItem>() {
+        @Override
+        public PlayerItem createFromParcel(Parcel in) {
+            return new PlayerItem( in );
+        }
+
+        @Override
+        public PlayerItem[] newArray(int size) {
+            return new PlayerItem[size];
+        }
+    };
+
+    public PlayerItem() {
 
     }
 
@@ -117,4 +152,27 @@ public class PlayerItem {
     public void setStrInstagram(String strInstagram) {
         this.strInstagram = strInstagram;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString( strPlayer );
+        parcel.writeString( dateBorn );
+        parcel.writeString( dateSigned );
+        parcel.writeString( strPosition );
+        parcel.writeString( strThumb );
+        parcel.writeString( strNationality );
+        parcel.writeString( strBirthLocation );
+        parcel.writeString( strDescriptionEN );
+        parcel.writeString( strHeight );
+        parcel.writeString( strWeight );
+        parcel.writeString( strTwitter );
+        parcel.writeString( strInstagram );
+    }
+
 }
